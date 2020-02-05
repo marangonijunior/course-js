@@ -4,7 +4,89 @@
     </head>
     <body>
         <script>
-            // Any code here.
+            // const is not editable if not was object
+            const user = {
+                name: 'Hednei',
+                age: 35
+            }
+            
+            // Use let
+            let age = 18;
+
+            // Operator === == && || < > >= <=
+            console.log(user.age >= age ? 'Man' : 'Boy')
+            console.log(user.age >= age ? user.name === 'Hednei' ? 'Ok man': ' Opps' : 'Boy')
+
+            if(user.age >= age) {
+                if(user.name === 'Hednei') {
+                    console.log('Ok man')
+                }else{
+                    console.log('Opps')
+                }
+            }else{
+                console.log('Boy')
+            }
+
+            // if need just true or false
+            let man = user.age >= age;
+            console.log(man)
+
+            let arr_1 = [1, 2]
+            let arr_2 = [3,2, 4, 5]
+
+            // get by index, start with 0
+            console.log('get by index', arr_1[1])
+
+            //create new arr by two
+            let arr_new = [1, 2, 3, ...arr_2]
+            console.log('arr_new', arr_new)
+
+            //Get min and max
+            console.log('max', Math.max(...arr_new), 'min', Math.min(...arr_new))
+
+            let resp; // response
+            for(let i = 0; i <= arr_new.length; i++ ){
+                resp = arr_new[i] === 2 ? 'get it' : 'not get it';
+                // if(arr_new[i] === 2){
+                //     resp = 'Get it'
+                // }
+            }
+            console.log(resp)
+
+            //Find the first element 
+            console.log('find', arr_new.find(item => item === 2))
+
+            //Map will return arr
+            let map  = arr_new.map(item => { 
+                return item === 2 ? 'got': 'not get';
+            })
+            console.log('map', map)
+
+            //forEach loop in array
+            let arr_users = [
+                {
+                    name: 'Freddy',
+                    age: 5
+                },
+                {
+                    name: 'Hednei',
+                    age: 35
+                },
+                {
+                    name: 'Junior',
+                    age: 18
+                }
+            ]
+
+            //function
+            function getMan(arr, adult_age){
+                arr.forEach(item => {
+                    console.log(item.age >= age ? item.name : 'boy')
+                })
+            }
+
+            getMan(arr_users, 16)
+
         </script>
     </body>
 </html>
