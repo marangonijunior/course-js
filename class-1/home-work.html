@@ -1,40 +1,57 @@
 <html>
-    <head>
-        <title>Js</title>
-    </head>
-    <body>
-        <script>
-            // 01 EXAMPLE
-            function haveSkill(skills) {
-                // your code
-            }
-            haveSkill(skills, skill); 
-            // true or false
 
-            // 02 EXAMPLE
-            function level(year) {
-                // your code
-            }
-            level(year);
-            // 0-1 year: Junior
-            // 1-3 year: Mid
-            // 3-6 year: Senior
-            // > 7 year: Jedi Master
+<head>
+    <title>Js</title>
+</head>
 
-            // 03 EXAMPLE
-            // With this object return the example, build your function.
-            var employees = [
-                {
-                    name: "Junior",
-                    skills: ['ReactJs', 'Angular']
-                },
-                {
-                    name: "Freddy",
-                    skills: ["VueJS", "Ruby on Rails", "Elixir"]
-                }
-            ];
+<body>
+    <script>
+
+
+
+        // 01 EXAMPLE
+        function haveSkill(skills, skill) {
+            let respSkill = skills.find(item => item === skill)
+            console.log(respSkill ? `Have skill ${skill}` : `Haven't skill ${skill}`)
+        }
+        let skillsList = ['ReactJs', 'NodeJs', 'Html', 'Css', 'React Native']
+        haveSkill(skillsList, 'Html');
+
+
+
+        // 02 EXAMPLE
+        function level(year) {
+            if (year <= 1) {
+                console.log('Level Junior')
+            } else if (year > 1 && year <= 3) {
+                console.log('Level Mid')
+            } else if (year > 3 && year <= 6) {
+                console.log('Level Senior')
+            } else {
+                console.log('Jedi Master')
+            }
+        }
+        level(7);
+        // 0-1 year: Junior
+        // 1-3 year: Mid
+        // 3-6 year: Senior
+        // > 7 year: Jedi Master
+
+        // 03 EXAMPLE
+        // With this object return the example, build your function.
+        var employees = [
+            {
+                name: "Junior",
+                skills: ['ReactJs', 'Angular']
+            },
+            {
+                name: "Freddy",
+                skills: ["VueJS", "Ruby on Rails", "Elixir"]
+            }
+        ];
             // Junior have skills: ReactJs, Angular
             // Freddy have skills: VueJS, Ruby on Rails, Elixir
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>
