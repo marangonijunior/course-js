@@ -4,88 +4,110 @@
     </head>
     <body>
         <script>
-            // const is not editable if not was object
-            const user = {
-                name: 'Hednei',
-                age: 35
-            }
-            
-            // Use let
-            let age = 18;
-
-            // Operator === == && || < > >= <=
-            console.log(user.age >= age ? 'Man' : 'Boy')
-            console.log(user.age >= age ? user.name === 'Hednei' ? 'Ok man': ' Opps' : 'Boy')
-
-            if(user.age >= age) {
-                if(user.name === 'Hednei') {
-                    console.log('Ok man')
-                }else{
-                    console.log('Opps')
-                }
-            }else{
-                console.log('Boy')
-            }
-
-            // if need just true or false
-            let man = user.age >= age;
-            console.log(man)
-
-            let arr_1 = [1, 2]
-            let arr_2 = [3,2, 4, 5]
-
-            // get by index, start with 0
-            console.log('get by index', arr_1[1])
-
-            //create new arr by two
-            let arr_new = [1, 2, 3, ...arr_2]
-            console.log('arr_new', arr_new)
-
-            //Get min and max
-            console.log('max', Math.max(...arr_new), 'min', Math.min(...arr_new))
-
-            let resp; // response
-            for(let i = 0; i <= arr_new.length; i++ ){
-                resp = arr_new[i] === 2 ? 'get it' : 'not get it';
-                // if(arr_new[i] === 2){
-                //     resp = 'Get it'
-                // }
-            }
-            console.log(resp)
-
-            //Find the first element 
-            console.log('find', arr_new.find(item => item === 2))
-
-            //Map will return arr
-            let map  = arr_new.map(item => { 
-                return item === 2 ? 'got': 'not get';
-            })
-            console.log('map', map)
-
-            //forEach loop in array
-            let arr_users = [
+            // model, year, value, fuelType, mpg
+            let cars = [
                 {
-                    name: 'Freddy',
-                    age: 5
+                  model: 'BMW 1',
+                  year: 2012,
+                  value: 5000,
+                  fuelType: 'Diesel',
+                  mpg: 35
                 },
                 {
-                    name: 'Hednei',
-                    age: 35
+                  model: 'Kia Sportage',
+                  year: 2019,
+                  value: 17000,
+                  fuelType: 'Petrol',
+                  mpg: 35
                 },
                 {
-                    name: 'Junior',
-                    age: 18
+                  model: 'Range Rover',
+                  year: 2012,
+                  value: 12000,
+                  fuelType: 'Diesel',
+                  mpg: 22
                 }
             ]
 
-            //function
-            function getMan(arr, adult_age){
-                arr.forEach(item => {
-                    console.log(item.age >= age ? item.name : 'boy')
+            // miles for month from user
+            let miles = 350;
+            // months that user use the car
+            const months =  12;
+            // g = liters
+            const liters = 4.2;
+            // cost to fuel
+            const costFuel = {
+                petrol: 1.2,
+                diesel: 1.35
+            };
+
+            // function to return all cars with conculation to cost to fuel
+            function getCostFuel(){
+                // array to return
+                let response = [];
+                // loop to calculate all cars
+                cars.forEach(car => {
+                    // convert mpg to mpl
+                    let mpl = car.mpg / liters;
+                    // get liter by month for car
+                    let carLiter = miles / mpl;
+                    // get liters by year
+                    let carLiterYear = carLiter * months;
+                    // check if is diesel or petrol
+                    if (car.fuelType === 'Diesel'){
+                        // return new object with name/fuelCostByYear
+                        response.push(
+                            {
+                                model: car.model,
+                                carLiterYear: carLiterYear,
+                                fuelCostByYear: carLiterYear * costFuel.diesel
+                            }
+                        )
+                    }else{
+                        // return new object with name/fuelCostByYear
+                        response.push({
+                            model: car.model,
+                            carLiterYear: carLiterYear,
+                            fuelCostByYear: carLiterYear * costFuel.petrol
+                        })
+                    }
                 })
+                // return the new array
+                return response;
             }
 
-            getMan(arr_users, 16)
+            // get new arr with cost of fuel by year for each car
+            let arrFuel = getCostFuel();
+
+            // return the car expensive and not ( in fuel )
+            function returnHighLow(){
+                // creating the values base to variabel
+                // the low cost init
+                var low = Number.POSITIVE_INFINITY;
+                // the high cost init
+                var high = Number.NEGATIVE_INFINITY;
+                // the temporary cost
+                var tmp;
+                // loop to check all cars
+                arrFuel.forEach(car => {
+                    // get information to tmp
+                    tmp = car.fuelCostByYear;
+                    // condition to check if tmp is low or high
+                    if (tmp < low) low = tmp
+                    if (tmp > high) high = tmp
+                })
+                // return new object with carLow/carHigh
+                // the function find looking for the same price by year to get the car
+                return {
+                    carLow: arrFuel.find(car => car.fuelCostByYear === low),
+                    carHigh: arrFuel.find(car => car.fuelCostByYear === high),
+                }
+            }
+
+            console.log('List cars:', cars)
+            console.log('List cars cost:', arrFuel)
+            console.log('List Min and Max:', returnHighLow())
+
 
         </script>
     </body>
