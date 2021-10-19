@@ -1,3 +1,34 @@
-.component {
+body {
+    margin: 0px;
+}
+#control {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+}
+#buttonLeft {
+    width: 50vw;
+    height: 80vh;
+    font-size: 20vw;
+}
+#buttonRight {
+    width: 50vw;
+    height: 80vh;
+    font-size: 20vw;
+}
 
+#buttonPause {
+    width: 100vw;
+    height: 20vh;
+    font-size: 20vw;
+}
+#regressiva {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 110;
+}
+#number {
+    font-size: 80vw;
+    padding-left: 32%;
 }

@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Js</title>
+    </head>
+    <body>
+
+        <div style="display: flex;margin:30%;">
+            <div style="font-size: 2em;">
+                <div style="height: 50px;width: 200px;position:relative" ><span id="numA"></span> x <span id="numB"></span></div>
+                <input style="font-size: 1.5em;margin-top: 20px;margin-bottom: 20px;height: 50px;width: 100px;position:relative" id="numero" />
+                <button style ="height: 50px;width: 100px;margin-top: 20px;margin-bottom: 20px;position:relative" id="checa"> Verificar </button>
+                <div style="height: 50px;width: 200px;position:relative" ><span id="acertou"></span> | <span id="errou"></span></div>
+            </div>
+
+            <div id="resultado" style="    
+                font-size: 2em;
+                margin-top: 20vh;
+                position: relative;
+            "></div>
+        </div>
+
+        <script>
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+
+            var numA;
+            var numB;
+            var min = 0;
+            var max = 10;
+            var acertou = 0;
+            var errou = 0;
+
+
+            var checa = document.getElementById('checa');
+            var checaResultado = function () {
+                var resultadoProposto = document.getElementById("numero").value;
+                var resultado = document.getElementById('resultado');
+                if(
+                    resultadoProposto == (Number(numA.innerText) * Number(numB.innerText))
+                ){
+                    resultado.innerText = "Voce acertou!";
+                    acertou = acertou + 1;
+                    
+                }else{
+                    resultado.innerText = "Voce errou : (";
+                    errou = errou + 1;
+
+                }
+                setTimeout(()=>{
+                    resultado.innerText = "";
+                }, 2000)
+                document.getElementById("numero").value = null;
+                geraTable();
+                setAcertos();
+            };
+            checa.addEventListener('click', checaResultado);
+
+            function geraTable(){
+                numA = document.getElementById('numA');
+                numA.innerText = getRandomInt(min, max);
+                numB = document.getElementById('numB');
+                numB.innerText = getRandomInt(min, max);
+            }
+
+            geraTable();
+            setAcertos();
+
+            function setAcertos(){
+                a = document.getElementById('acertou');
+                a.innerText = `Acertou ${acertou}`;
+                b = document.getElementById('errou');
+                b.innerText = `Errou ${errou}`;
+            }
+
+        </script>
+    </body>
+</html>
